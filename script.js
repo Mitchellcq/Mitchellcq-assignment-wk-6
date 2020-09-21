@@ -14,12 +14,12 @@ function buildQueryURL() {
         var long = response.city.coord.lon;
         var lat = response.city.coord.lat;
         var newUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=minutely,hourly,current&appid=7b42feb763bef4c699958a88c3c3a5df"
+        
         return newUrl;
-
   });
 }
 //function to create 5 day forecast cards
-function appendCards() {
+function appendCards(obj) {
 
     var appendCardsHere = $("#appendCardsHere");
     appendCardsHere.empty();
@@ -36,11 +36,11 @@ function appendCards() {
         var humid = $("<div class='card-text'>");
 
         //convert kelvin to celsius
-        var parsedTemp = this.daily[i].temp.day - 273.15;
+        var parsedTemp = obj.daily[i].temp.day - 273.15;
         temp.text('Temperature:' + parsedTemp + '°C');
-        date.text(this.daily[i].dt_txt);
-        icon.text(this.daily[i].weather.icon);
-        humid.text('Humidity' + this.list[i].main.humidity + '%');
+        date.text(obj.daily[i].dt_txt);
+        icon.text(obj.daily[i].weather.icon);
+        humid.text('Humidity' + obj.list[i].main.humidity + '%');
 
         cardBody.append(icon);
         cardBody.append(temp);
@@ -55,9 +55,9 @@ function appendCards() {
 }
 
 //pull the information for the main display
-function jumboDisplay() {
+function jumboDisplay(obj) {
     var date = new Date();
-    var parsedTemp = this.daily[0].temp.day - 273.15;
+    var parsedTemp = obj.daily[0].temp.day - 273.15;
 
     var header = $("#header");
     var tempDisp = $("#tempDisp");
@@ -65,11 +65,11 @@ function jumboDisplay() {
     var windDisp = $("#windDisp");
     var uvDisp = $("#uvDisp");
 
-    header.text(this.timezone + ',' + date.toDateString() + '' + this.daily[0].weather[0].icon);
+    header.text(obj.timezone + ',' + date.toDateString() + '' + obj.daily[0].weather[0].icon);
     tempDisp.text('Temperature:' + parsedTemp + '°C');
-    humidDisp.text('Humidity' + this.daily[0].main.humidity + '%');
-    windDisp.text('Windspeed:' + this.daily[0].wind_speed);
-    uvDisp.text('UV Index:' + this.daily[0].uvi);
+    humidDisp.text('Humidity' + obj.daily[0].main.humidity + '%');
+    windDisp.text('Windspeed:' + obj.daily[0].wind_speed);
+    uvDisp.text('UV Index:' + obj.daily[0].uvi);
 
 }
 
@@ -89,6 +89,7 @@ function appendCityButton() {
 //function for second ajax call
 function callAjax(){
     var url = buildQueryURL();
+    console.log("new url = " + url);
 
     $.ajax({
         url: url,
@@ -96,7 +97,8 @@ function callAjax(){
     }).then(function(response){
         console.log("---second call---");
         console.log(response);
-        return response;
+        var finalObj = response;
+        return finalObj;
     });
 }
 
