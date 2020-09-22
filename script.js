@@ -146,6 +146,7 @@ function jumboDisplay(obj) {
     mainDisplay.append(tempDisp);
     mainDisplay.append(humidDisp);
     mainDisplay.append(windDisp);
+    mainDisplay.append(uvDisp);
 }
 
 // function to save data to local storage
