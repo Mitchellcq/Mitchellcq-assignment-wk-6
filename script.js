@@ -4,28 +4,36 @@ init();
 
 //function to initialise page with local storage data if it exists
 function init() {
-    var retrievedObject = JSON.parse(localStorage.getItem('city'));
+    var mainDisplay = $("#mainDisplay");
+    var header = $("<h1 class='display-4'>");
+    header.text("Enter a city and press search!");
+    mainDisplay.append(header);
+
+    var retrievedObject = JSON.parse(localStorage.getItem('cities'));
     if (retrievedObject !== null) {
         cities = retrievedObject;
     }
-    renderCities();
+    renderCitiesFromLocal();
 }
 
 //function to render city buttons from local storage
-function renderCities() {
-    $("#appendCityHere").empty();
+function renderCitiesFromLocal() {
     for (var i = 0; i < cities.length; i++) {
         var cityName = cities[i];
-        var li = $("<li>");
-        var cityButton = $("<button type='button' class='btn btn-outline-info btn-lge cityButtonNew'>");
-        var Capitalised = capitalizeFirstLetter(cityName);
-
-        cityButton.text(Capitalised);
-        li.append(cityButton);
-        $("#appendCityHere").prepend(li);
-
+        renderCities(cityName);
     }
 }
+
+//function to render cities
+function renderCities(string) {
+    var li = $("<li>");
+    var cityButton = $("<button type='button' class='btn btn-outline-info btn-lge cityButtonNew'>");
+    var Capitalised = capitalizeFirstLetter(string);
+
+    cityButton.text(Capitalised);
+    li.append(cityButton);
+    $("#appendCityHere").prepend(li);
+};
 
 //function to build the weather object with ajax based on user input
 function buildObject(string) {
@@ -171,11 +179,18 @@ $("#searchButton").on("click", function (event) {
         return;
     }
 
-    cities.push(userInput);
+    let duplicateExists = false
+    for (i = 0; i < cities.length; i++) {
+        if (userInput == cities[i]) {
+            duplicateExists = true
+            break
+        }
+    }
+    if (!duplicateExists) cities.push(userInput), renderCities(userInput);
+
     userInput.value = "";
 
     saveLocalData();
-    renderCities();
     buildObject(userInput);
 
     console.log(localStorage);
@@ -202,4 +217,6 @@ $("#clear").on("click", function () {
     $("#appendCityHere").empty();
     $("#appendCardsHere").empty();
     $("#mainDisplay").empty();
+
+    init();
 });
