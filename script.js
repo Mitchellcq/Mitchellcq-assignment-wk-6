@@ -39,7 +39,7 @@ function renderCities(string) {
 function buildObject(string) {
 
     var city = string;
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=b7d465b8cab0cdf75326fd792466206b";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=b7d465b8cab0cdf75326fd792466206b";
     //first ajax call
     $.ajax({
         url: queryURL,
