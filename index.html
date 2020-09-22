@@ -1,65 +1,80 @@
-<!doctype html>
+<!doctype HTML>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Weather Forecast App</title>
-  </head>
-  <body>
-    
-    <nav class="navbar navbar-dark text-white bg-dark d-flex justify-content-center">
-        <h2>Weather Forecast App</h2>
-    </nav>
-    <br>
-<div class="container">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Weather Forecast App</title>
+
+  <style>
+    #cityButtonNew {
+      border: 2px solid rgb(189, 189, 189);
+      border-radius: 5px;
+      margin: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark text-white bg-dark d-flex justify-content-center">
+    <h2>Weather Forecast App</h2>
+  </nav>
+  <br>
+  <div class="container-fluid">
     <div class="row">
-        <div class="col-4">
-            <form>
+      <div class="col-4">
+        <form>
 
-                <label for="citySearch">Enter a city:</label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="searchButton" id="citySearch">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-primary" type="button" id="searchButton"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-
-                <div class="appendCityHere">
-
-                </div>
-            </form>
-        </div>
-        <div class="col-8">
-            <div class="container">
-
-                <div class="row">
-                    <div class="jumbotron">
-                      <h1 class='display-4' id="header"></h1>
-                      <hr class='my-4'>
-                      <p id="tempDisp"></p>
-                      <p id="humidDisp"></p>
-                      <p id="windDisp"></p>
-                      <p id="uvDisp"></p>
-
-
-                    </div>
-                </div>
-
-                <label for="appendCardsHere">5 Day Forecast:</label>
-                <div class="row" id="appendCardsHere">
-                    
-                    
-                </div>
+          <label for="citySearch">Enter a city:</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="searchButton"
+              id="citySearch">
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" id="searchButton"><i
+                  class="fa fa-search"></i></button>
             </div>
+          </div>
+
+          <ul id="appendCityHere">
+
+          </ul>
+          <button id="clear" type="button" class="btn btn-outline-dark">Clear</button>
+        </form>
+      </div>
+      <div class="col-8">
+        <div class="container">
+
+          <div class="row">
+            <div class="jumbotron">
+              <h1 class='display-4' id="header"></h1>
+              <img id='wiconMain' alt='Weather icon'>
+              <hr class='my-4'>
+              <p id="tempDisp"></p>
+              <p id="humidDisp"></p>
+              <p id="windDisp"></p>
+              <p id="uvDisp" role="alert"></p>
+
+
+            </div>
+          </div>
+
+          <label for="appendCardsHere">5 Day Forecast:</label>
+          <div class="row" id="appendCardsHere">
+
+
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
 
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <script src = "script.js"></script>
-  </body>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>
